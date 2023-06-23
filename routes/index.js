@@ -2,7 +2,7 @@ const express=require("express")
 const home_route=express.Router()
 
 home_route.get('/',(req,res)=>{
-    res.send('DA qui')
+    res.render('casa.ejs',{title:"Express"})
 })
 
 home_route.get('/home',(req,res)=>{
