@@ -19,6 +19,7 @@ async function main(){
 const home = require('./routes/home')
 const indexRouter=require('./routes/index')
 const userRouter=require('./routes/users')
+const catalogRouter=require('./routes/catalog')
 ///define app middlewares
 app.use(express.json())
 app.use(express.urlencoded({extended:false}))
@@ -28,6 +29,7 @@ app.use(express.static('public'))
 
 app.use('/',indexRouter)
 app.use('/users',userRouter)
+app.use('/catalog',catalogRouter)
 
 /* app.get('/',(req,res)=>{
     res.send('CI siamo')
