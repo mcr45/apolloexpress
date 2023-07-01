@@ -38,6 +38,9 @@ app.use('/catalog',catalogRouter)
 app.get('/vie',(req,res)=>{
     res.render('casa.ejs')
 })
+app.get('/proviamo',(req,res)=>{
+    res.render('layout.ejs',{content:'prova',title:'eccoci'})
+})
 
 
 app.listen(process.env.PORT,()=>{
