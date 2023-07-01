@@ -22,8 +22,9 @@ const userRouter=require('./routes/users')
 const catalogRouter=require('./routes/catalog')
 ///define app middlewares
 app.use(express.json())
-app.use(express.urlencoded({extended:false}))
-app.set('view engine', 'ejs')
+app.use(express.urlencoded({extended:false}))/* 
+app.set('view engine', 'ejs') */
+app.set('view engine', 'pug')
 app.use(express.static('public'))
 ///define app endpoints
 
