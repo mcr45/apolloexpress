@@ -1,7 +1,12 @@
 const author=require('../models/author')
 
 exports.author_list= async function (req,res,next){
-res.send('ci sto lavorando')
+    try {
+        const allAuthors= await author.find().sort({family_name:1}).exec()
+        res.render('author_list',{title:'Author list',author_list:allAuthors})
+    } catch (error) {
+        next(error)
+    }
 }
 
 exports.author_detail= async (req,res,next)=>{
