@@ -9,11 +9,13 @@ date_of_death:{type:Date},
 })
 
 AuthorSchema.virtual("name").get(function(){
-    let fullName=''
+   /*  let fullName=''
     if(this.first_name && this.last_name){
-        fullName=`${this.first_name},${this.family_name}`
+        return fullName=`${this.first_name},${this.family_name}`
     }
-    return fullName
+    else{
+    return fullName} */
+   return `${this.first_name}, ${this.family_name}`
 })
 
 AuthorSchema.virtual("url").get(function(){

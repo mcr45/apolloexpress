@@ -3,8 +3,7 @@ const author=require('../models/author')
 const bookinstances=require('../models/bookinstance')
 const genre = require('../models/genre')
 
-exports.index = async (req, res, next) => {/* 
-  res.send("NOT IMPLEMENTED: Site Home Page"); */
+exports.index = async (req, res, next) => {
   try {
     const [
       numBooks,
@@ -36,7 +35,18 @@ exports.index = async (req, res, next) => {/*
 
 // Display list of all books.
 exports.book_list = async (req, res, next) => {
-  res.send("NOT IMPLEMENTED: Book list");
+try {
+  const allBooks= await Book.find({},"title author")
+  .sort({title:1})
+  .populate('author')
+  .exec()
+
+  res.render("book_list",{title:"Books list",book_list:allBooks})
+} catch (error) {
+  next(error)
+}
+
+
 }
 
 // Display detail page for a specific book.

@@ -2,21 +2,25 @@ const bookInstance =require('../models/bookinstance')
 
 exports.bookInstance_list= async (req,res,next)=>{
 try {
-    res.send('no non nono')
+
+    let allBookInstances= await bookInstance.find().populate('book').exec()
+    res.render('bookinstance_list',{title:'Book Instance List', bookinstance_list:allBookInstances}) 
 } catch (error) {
     next(error)
 }
 }
 
 exports.bookInstance_detail= async (req,res,next)=>{
-    try {
-        res.send(`${req.params.id}`)
+    try {/* 
+        res.send(`${req.params.id}`) */
+
     } catch (error) {
         next(error)
     }
 }
 
 exports.bookInstance_create_get= async (req,res,next)=>{
+
 res.send('iop')
 }
 
