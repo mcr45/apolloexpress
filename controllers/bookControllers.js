@@ -54,6 +54,14 @@ exports.book_detail = async (req, res, next) => {/*
   res.send(`NOT IMPLEMENTED: Book detail: ${req.params.id}`); *//* 
   const book_det=Book.find({_id:req.params.id}).exec()
   re.render('book_detail',{title:"Book detail",}) */
+const [bok,bookinsta]=await Promise.all([Book.findById(req.params.id).populate("author").populate("genre").exec(),
+bookinstances.find({book:req.params.id}).exec()])
+if(bok===null){const err=new Error('not a book in site')
+ err.status=404
+next(err)
+}
+res.render("book_detail",{title:bok.title, book:bok,book_instances:bookinsta})
+
 }
 
 // Display book create form on GET.
