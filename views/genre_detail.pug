@@ -1,0 +1,21 @@
+extends layout
+
+block content
+
+    h1 Genre:#{genre.name}
+
+    div(style='margin:20 0 0 20')
+
+        h4 Books 
+
+            dl 
+                each book in books
+                    dt 
+                        a(href=book.url) #{book.title} 
+                    dd #{book.summary}
+
+
+                else
+                    p this genre has no book 
+
+    

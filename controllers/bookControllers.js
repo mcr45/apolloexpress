@@ -50,8 +50,10 @@ try {
 }
 
 // Display detail page for a specific book.
-exports.book_detail = async (req, res, next) => {
-  res.send(`NOT IMPLEMENTED: Book detail: ${req.params.id}`);
+exports.book_detail = async (req, res, next) => {/* 
+  res.send(`NOT IMPLEMENTED: Book detail: ${req.params.id}`); *//* 
+  const book_det=Book.find({_id:req.params.id}).exec()
+  re.render('book_detail',{title:"Book detail",}) */
 }
 
 // Display book create form on GET.
