@@ -13,7 +13,13 @@ try {
 exports.bookInstance_detail= async (req,res,next)=>{
     try {/* 
         res.send(`${req.params.id}`) */
-
+    const bookin= await bookInstance.findById(req.params.id).populate('book').exec()
+    if(bookin===null){
+        const err=new Error('nonononon bookokokoko')
+        err.status=404
+        next(err)
+    }
+    res.render('bookinstance_detail',{title:'Book:',bookinstance:bookin})
     } catch (error) {
         next(error)
     }

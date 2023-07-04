@@ -1,4 +1,5 @@
-const author=require('../models/author')
+const author = require('../models/author')
+const book=require('../models/book')
 
 exports.author_list= async function (req,res,next){
     try {
@@ -9,8 +10,20 @@ exports.author_list= async function (req,res,next){
     }
 }
 
-exports.author_detail= async (req,res,next)=>{
-res.send(`not yet ${req.params.id}`)
+exports.author_detail= async (req,res,next)=>{/* 
+res.send(`not yet ${req.params.id}`) */
+try {
+    const [theauthor,bookbyauthor]= await Promise.all([author.findById(req.params.id).exec(),
+        book.find({author:req.params.id}, "title summary").exec()])
+if(theauthor===null){
+    const err = new Error('non ci sono authors')
+    err.status=404
+    next(err)
+}
+res.render('author_detail',{title:"author  Detail", author:theauthor,boka:bookbyauthor})
+} catch (error) {
+    
+}
 
 }
 
